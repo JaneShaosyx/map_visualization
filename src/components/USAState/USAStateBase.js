@@ -2,6 +2,7 @@ import {
     geoAlbersUsa,
     geoPath,
     interpolateBlues,
+    interpolateYlGnBu,
     scaleSequential,
     scaleLinear,
 } from "d3";
@@ -33,7 +34,6 @@ const USAStateBase = ({ USAtlas: { states, interiors }, statesInfo }) => {
     useEffect(() => {
         let newMap = changeDataMap();
         setDataMap(newMap);
-        console.log(maxValue, minValue);
     }, [month, attribute]);
 
     const changeDataMap = () => {
@@ -41,14 +41,14 @@ const USAStateBase = ({ USAtlas: { states, interiors }, statesInfo }) => {
         let max = -100;
         let min = 100;
         statesInfo.forEach((d) => {
-            if (d.month == month) {
+            if (d.MONTH == month) {
                 newMap.set(AbbrToFull[d.STATE], d[attribute]);
                 max = Math.max(max, d[attribute]);
                 min = Math.min(min, d[attribute]);
             }
         });
-        setMaxValue(max);
-        setMinValue(min);
+        setMaxValue(Number(max).toFixed(2));
+        setMinValue(Number(min).toFixed(2));
         return newMap;
     };
 
@@ -127,37 +127,41 @@ const USAStateBase = ({ USAtlas: { states, interiors }, statesInfo }) => {
                 </FormControl>
             </Box>
             <Box display="flex" alignItems="center" justifyContent="center">
-                <Typography>{`data: ${stateData}`}</Typography>
+                <Typography>{`max: ${maxValue} min: ${minValue} data: ${stateData}`}</Typography>
             </Box>
-            <svg width={width} height={height}>
-                <g className="marks">
-                    {dataMap
-                        ? states.features.map((feature) => {
-                              const data = dataMap.get(feature.properties.name);
-                              return (
-                                  <path
-                                      className="states"
-                                      key={feature.id}
-                                      d={path(feature)}
-                                      fill={colorScale(data)}
-                                      onMouseOver={(e) =>
-                                          handleMouseOver(e, data)
-                                      }
-                                  />
-                              );
-                          })
-                        : states.features.map((feature) => {
-                              return (
-                                  <path
-                                      className="states"
-                                      key={feature.id}
-                                      d={path(feature)}
-                                  />
-                              );
-                          })}
-                    <path className="interiors" d={path(interiors)} />
-                </g>
-            </svg>
+            <Box display="flex" alignItems="center" justifyContent="center">
+                <svg width={width} height={height}>
+                    <g className="marks">
+                        {dataMap
+                            ? states.features.map((feature) => {
+                                  const data = dataMap.get(
+                                      feature.properties.name
+                                  );
+                                  return (
+                                      <path
+                                          className="states"
+                                          key={feature.id}
+                                          d={path(feature)}
+                                          fill={colorScale(data)}
+                                          onMouseOver={(e) =>
+                                              handleMouseOver(e, data)
+                                          }
+                                      />
+                                  );
+                              })
+                            : states.features.map((feature) => {
+                                  return (
+                                      <path
+                                          className="states"
+                                          key={feature.id}
+                                          d={path(feature)}
+                                      />
+                                  );
+                              })}
+                        <path className="interiors" d={path(interiors)} />
+                    </g>
+                </svg>
+            </Box>
         </Container>
     );
 };

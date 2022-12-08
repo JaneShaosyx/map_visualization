@@ -1,7 +1,13 @@
 /* .marks .states {
     fill: #137b80;
 } */
-.marks .interiors {
+
+/* .marks .interiors {
+    fill: none;
+    stroke: #c0c0bb;
+} */
+
+.marks {
     fill: none;
     stroke: #c0c0bb;
 }
