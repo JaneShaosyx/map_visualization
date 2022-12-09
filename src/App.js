@@ -3,6 +3,10 @@ import { useUSAtlas } from "./actions/getUSA";
 import { useStatesInfo } from "./actions/getStatesInfo";
 import { useClustersInfo } from "./actions/getCluster";
 import USAPoint from "./components/USAPoint/USAPoint";
+import USAPointPredict from "./components/USAPointPredict/USAPointPredict";
+import LineChart from "./components/LineChart/LineChart";
+import Container from "@mui/material/Container";
+import * as api from "./api/index";
 
 function App() {
     const USAtlas = useUSAtlas();
@@ -14,8 +18,15 @@ function App() {
     }
     return (
         <div className="App">
-            <USAStateBase USAtlas={USAtlas} statesInfo={statesInfo} />
-            <USAPoint USAtlas={USAtlas} clustersInfo={clustersInfo} />
+            <Container>
+                <USAPointPredict
+                    USAtlas={USAtlas}
+                    clustersInfo={clustersInfo}
+                />
+                <LineChart statesInfo={statesInfo} />
+                <USAStateBase USAtlas={USAtlas} statesInfo={statesInfo} />
+                <USAPoint USAtlas={USAtlas} clustersInfo={clustersInfo} />
+            </Container>
         </div>
     );
 }

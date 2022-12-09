@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { csv } from "d3";
 
 const csvFile =
-    "https://gist.githubusercontent.com/JaneShaosyx/b6575791dcf3812e7fb504329c82a838/raw/c5f4a7f2c43a41f9ce1596d37b97a8bb1ae666a8/clusters.csv";
+    "https://gist.githubusercontent.com/JaneShaosyx/8ab77d5f02ca0bbbccd0defd8f528cff/raw/48dcc4a3b163a9ac9a872a7d293c803adf1415bc/clusters.csv";
 
 export const useClustersInfo = () => {
     const [data, setData] = useState(null);

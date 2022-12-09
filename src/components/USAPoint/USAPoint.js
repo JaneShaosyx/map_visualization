@@ -32,7 +32,7 @@ const USAPoint = ({ USAtlas: { states, interiors }, clustersInfo }) => {
     };
 
     return (
-        <Container>
+        <Box sx={{ m: '5em auto' }}>
             <Box display="flex" alignItems="center" justifyContent="center">
                 <FormControl sx={{ m: 2, minWidth: 120 }}>
                     <InputLabel>month</InputLabel>
@@ -93,7 +93,7 @@ const USAPoint = ({ USAtlas: { states, interiors }, clustersInfo }) => {
                     </g>
                 </svg>
             </Box>
-        </Container>
+        </Box>
     );
 };
 

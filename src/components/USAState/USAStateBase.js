@@ -89,7 +89,7 @@ const USAStateBase = ({ USAtlas: { states, interiors }, statesInfo }) => {
     const months = Array.from(Array(12), (_, i) => i + 1);
 
     return (
-        <Container>
+        <Box sx={{ m: '5em auto' }}>
             <Box display="flex" alignItems="center" justifyContent="center">
                 <FormControl sx={{ m: 2, minWidth: 120 }}>
                     <InputLabel>attribute</InputLabel>
@@ -162,7 +162,7 @@ const USAStateBase = ({ USAtlas: { states, interiors }, statesInfo }) => {
                     </g>
                 </svg>
             </Box>
-        </Container>
+        </Box>
     );
 };
 
