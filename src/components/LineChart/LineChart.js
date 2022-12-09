@@ -165,7 +165,7 @@ const LineChart = ({ statesInfo }) => {
                         transform={`translate(0,${height})`}
                     />
                     <text
-                        transform={`translate(${width/2-4},${height})`}
+                        transform={`translate(${width/2-10},${height})`}
                         dy="2em"
                         fill={'#666'}
                     >

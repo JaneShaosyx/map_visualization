@@ -5,11 +5,14 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Box from "@mui/material/Box";
 import { useState, useEffect, Fragment } from "react";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import "./styles.css";
 import { AbbrToFull } from "../../constants/StateHash";
-import { predictData } from "../../constants/predictData";
+import {
+    predictQuestion,
+    attributes,
+    answers,
+} from "../../constants/predictData";
 import * as api from "../../api/index";
 import Button from "@mui/material/Button";
 
@@ -20,21 +23,24 @@ const width = 960;
 const height = 500;
 
 const USAPointPredict = ({ USAtlas: { states, interiors }, clustersInfo }) => {
-    const attributes = Array.from(Object.keys(predictData));
-
     const [curData, setCurData] = useState(clustersInfo[0]);
     const [cluster, setCluster] = useState(1);
-    const [curCluster, setCurCluster] = useState(clustersInfo);
+    const [curCluster, setCurCluster] = useState([]);
     const [formData, setFormData] = useState({
-        MonthlyAvgPreciptation: predictData["MonthlyAvgPreciptation"][0],
-        MonthlyAvgSnowfall: predictData["MonthlyAvgSnowfall"][0],
-        MonthlyTotalSnowfall: predictData["MonthlyTotalSnowfall"][0],
-        MonthlyAvgDaylight: predictData["MonthlyAvgDaylight"][0],
-        MonthlyAvgTemp: predictData["MonthlyAvgTemp"][0],
-        MonthlyAvgTempDiff: predictData["MonthlyAvgTempDiff"][0],
-        MonthlyAvgRelativeHumidity:
-            predictData["MonthlyAvgRelativeHumidity"][0],
-        MonthlyAvgWindSpeed: predictData["MonthlyAvgWindSpeed"][0],
+        MonthlyAvgPreciptation: answers[0],
+        MonthlyAvgSnowfall: answers[0],
+        MonthlyTotalSnowfall: answers[0],
+        MonthlyAvgDaylight: answers[0],
+        MonthlyAvgTemp: answers[0],
+        MonthlyAvgTempDiff: answers[0],
+        MonthlyAvgRelativeHumidity: answers[0],
+        MonthlyAvgWindSpeed: answers[0],
+        MonthlyMaxPrecip: answers[0],
+        MonthlyMaxSnowfall: answers[0],
+        MonthlyAvgPeakWindSpeed: answers[0],
+        MonthlyAvgSnowDepth: answers[0],
+        MonthlyMaxTempDiff: answers[0],
+        MonthlyMinDailyTempDiff: answers[0],
         month: 1,
     });
 
@@ -51,8 +57,6 @@ const USAPointPredict = ({ USAtlas: { states, interiors }, clustersInfo }) => {
         }
         setCurCluster(newClusterData);
     }, [cluster]);
-
-    // api.getPrediction({ area: 2.8 }).then((d) => console.log(d));
 
     const months = Array.from(Array(12), (_, i) => i + 1);
     const myColor = scaleSequential()
@@ -78,18 +82,19 @@ const USAPointPredict = ({ USAtlas: { states, interiors }, clustersInfo }) => {
                         <Box
                             display="flex"
                             alignItems="center"
-                            justifyContent="center"
+                            justifyContent="space-between"
                         >
-                            <FormControl sx={{ m: 2, minWidth: 240 }}>
-                                <InputLabel>{attr}</InputLabel>
+                            <Typography variant="h6" component="h2">
+                                {predictQuestion[attr]}
+                            </Typography>
+                            <FormControl sx={{ m: 2, minWidth: 400 }}>
                                 <Select
                                     name={attr}
-                                    label={attr}
                                     onChange={changeHandler}
                                     value={formData[attr]}
                                     autoWidth
                                 >
-                                    {predictData[attr].map((v, i) => {
+                                    {answers.map((v, i) => {
                                         return (
                                             <MenuItem key={i} value={v}>
                                                 {v}
@@ -101,8 +106,16 @@ const USAPointPredict = ({ USAtlas: { states, interiors }, clustersInfo }) => {
                         </Box>
                     );
                 })}
-                <Box display="flex" alignItems="center" justifyContent="center">
-                    <FormControl sx={{ m: 2, minWidth: 240 }}>
+                <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="space-between"
+                    sx={{ mb: 5 }}
+                >
+                    <Button variant="outlined" type="submit">
+                        Get Recommendation
+                    </Button>
+                    <FormControl sx={{ m: 2, minWidth: 400 }}>
                         <InputLabel>month</InputLabel>
                         <Select
                             label="Month"
@@ -120,11 +133,6 @@ const USAPointPredict = ({ USAtlas: { states, interiors }, clustersInfo }) => {
                             })}
                         </Select>
                     </FormControl>
-                </Box>
-                <Box display="flex" alignItems="center" justifyContent="center">
-                    <Button variant="outlined" type="submit">
-                        Get Predict
-                    </Button>
                 </Box>
             </form>
             <Box display="flex" alignItems="center" justifyContent="center">

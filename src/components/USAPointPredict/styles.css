@@ -8,3 +8,8 @@
 .marks4 .states4:hover {
     fill: green;
 }
+
+.break-column {
+    flex-basis: 100%;
+    width: 0;
+  }
