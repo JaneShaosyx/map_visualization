@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+### Data Source
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- https://gist.github.com/JaneShaosyx/717a90505abe201d67d15d10606e8de7
+- https://gist.github.com/JaneShaosyx/8ab77d5f02ca0bbbccd0defd8f528cff
+- Produced by SFU CMPT 732 Final Project
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+### Project Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+.
+├── App.js
+├── actions
+│   ├── getCluster.js
+│   ├── getStatesInfo.js
+│   └── getUSA.js
+├── api
+│   └── index.js
+├── components
+│   ├── LineChart
+│   │   ├── LineChart.js
+│   │   └── styles.css
+│   ├── USAPoint
+│   │   ├── USAPoint.js
+│   │   └── styles.css
+│   ├── USAPointPredict
+│   │   ├── USAPointPredict.js
+│   │   └── styles.css
+│   └── USAState
+│       ├── USAStateBase.js
+│       └── styles.css
+├── constants
+│   ├── StateHash.js
+│   └── predictData.js
+├── index.css
+└── index.js
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Graph
 
-### `npm run build`
+- First graph is for the result of the survey.
+- Second graph is to display all the stations with color stands for the cluster they belongs to.
+- Third graph is the geographical representation of data.
+- Forth graph is the chronological representation of data.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Interaction
 
-### `npm run eject`
+- You can get the relavant data on top of the graph when you move your mouse on the points (for graph 1 and 2) or squares (for graph 3).
+- You can change displayed data through submit form (for graph 1) or just drop-down selectors (for graph 2,3,4).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Note
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> Because we just collect the data for 50 states, some choices in the state drop-down selector do not have data.(it has around 60 states and areas)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
