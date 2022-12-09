@@ -15,7 +15,7 @@ export const predictQuestion = {
     MonthlyAvgPreciptation:
         "I would like to live in a place with less precipitation.",
     MonthlyAvgSnowfall:
-        "How much snow do you like in your preferred living place?",
+        "I would like to live in a place with very little snow.",
     MonthlyTotalSnowfall:
         "I would like to live in a place with very little snow.",
     MonthlyAvgDaylight: "I would like to live in a place with less sunlight.",
